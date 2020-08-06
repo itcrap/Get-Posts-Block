@@ -1,0 +1,40 @@
+{
+  "name": "get-posts-block",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "wp-scripts start",
+    "build": "wp-scripts build",
+    "check-engines": "wp-scripts check-engines",
+    "check-licenses": "wp-scripts check-licenses --prod --gpl2 --ignore=abab",
+    "lint:js": "wp-scripts lint-js src/index.js",
+    "lint:js-fix": "wp-scripts lint-js src/index.js --fix",
+    "lint:css": "wp-scripts lint-style '**/*.css'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/deSoul/wordpressblockstarter.git"
+  },
+  "author": "Matthew Soul",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://gitlab.com/deSoul/wordpressblockstarter/issues"
+  },
+  "homepage": "https://gitlab.com/deSoul/wordpressblockstarter#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "12.1.1",
+    "babel-eslint": "^10.1.0",
+    "copy-webpack-plugin": "^6.0.3",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jsx-a11y": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "prettier": "^2.0.5"
+  }
+}
