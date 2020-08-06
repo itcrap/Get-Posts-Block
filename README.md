@@ -3,6 +3,6 @@
 
 ## Usage
 * Create directory `/wp-content/plugins/get-posts-block` on your website
-* Copy contents of `/build` dir to `/wp-content/plugins/get-posts-block`
+* Copy contents of `/build` to `/wp-content/plugins/get-posts-block` directory
 * Activate Get Posts Block on Wordpress plugin admin page 
 * Block will be accessed from Common blocks group in Gutenberg post editor
