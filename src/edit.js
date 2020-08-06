@@ -60,6 +60,7 @@ export default function editBlock(props, wp) {
       return createElement(CheckboxControl, {
         key: post.id,
         label: post.title,
+        className: 'get-posts-block-checkboxes',
         checked: getStateChecked(index),
         onChange() {
           setStateOnChange(index);
