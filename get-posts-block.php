@@ -39,7 +39,7 @@ function get_posts_block_register_block() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'index.js' )
 	);
 
-	// Register editor style src/editor.css
+	// Register editor style build/editor.css
 	wp_register_style(
 		'get-posts-block-editor-style',
 		plugins_url( 'editor.css', __FILE__ ),
@@ -47,7 +47,7 @@ function get_posts_block_register_block() {
 		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
 	);
 
-	// Register front end block style src/style.css
+	// Register front end block style build/style.css
 	wp_register_style(
 		'get-posts-block-frontend-style',
 		plugins_url( 'style.css', __FILE__ ),
