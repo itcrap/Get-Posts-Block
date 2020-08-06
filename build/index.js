@@ -236,6 +236,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function editBlock(props, wp) {
+  var __ = wp.i18n.__;
   var attributes = props.attributes,
       setAttributes = props.setAttributes;
   var _wp$element = wp.element,
@@ -249,7 +250,8 @@ function editBlock(props, wp) {
       Modal = _wp$components.Modal,
       ToggleControl = _wp$components.ToggleControl,
       PanelBody = _wp$components.PanelBody,
-      PanelRow = _wp$components.PanelRow;
+      PanelRow = _wp$components.PanelRow,
+      SelectControl = _wp$components.SelectControl;
 
   var _useState = useState(false),
       _useState2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0___default()(_useState, 2),
@@ -357,10 +359,39 @@ function editBlock(props, wp) {
     }
   }, modalContents()))
   /*  */
-  )))];
+  ))), createElement(Fragment, {}, createElement(InspectorControls, {}, createElement(PanelBody, {
+    title: 'Template',
+    initialOpen: true
+  }, createElement(PanelRow, {}, createElement('div', {
+    className: 'get-posts-block-preview-template',
+    style: {
+      backgroundImage: "url(\"/wp-content/plugins/get-posts-block/".concat(attributes.template, ".png\")")
+    }
+  })), createElement(PanelRow, {}, createElement(SelectControl, {
+    // multiple: true,
+    label: __('Select post template'),
+    value: attributes.template,
+    // e.g: value = [ 'a', 'c' ]
+    onChange: function onChange(tpl) {
+      console.log("Selected: ".concat(tpl));
+      setAttributes({
+        template: tpl
+      });
+    },
+    options: [{
+      value: 'default',
+      label: 'Template 1'
+    }, {
+      value: 'theme2',
+      label: 'Template 2'
+    }, {
+      value: 'theme3',
+      label: 'Template 3'
+    }]
+  })))))];
   /* Editor block */
 
-  var editor = createElement('div', {}, createElement('div', {}, attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no'), createElement('div', {}, Object(_functions__WEBPACK_IMPORTED_MODULE_1__["RENDER_POSTS"])(Object(_functions__WEBPACK_IMPORTED_MODULE_1__["SELECTED_POSTS"])(attributes.posts), createElement)));
+  var editor = createElement('div', {}, createElement('div', {}, attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no'), createElement('div', {}, Object(_functions__WEBPACK_IMPORTED_MODULE_1__["RENDER_POSTS"])(Object(_functions__WEBPACK_IMPORTED_MODULE_1__["SELECTED_POSTS"])(attributes.posts), attributes.template, createElement)));
   /*
    * Initiation part
    */
@@ -423,7 +454,7 @@ var QUERY_POST = function QUERY_POST(postsArray) {
 };
 /* Render post elements inside block in editor */
 
-var RENDER_POSTS = function RENDER_POSTS(JSONstr, createElement) {
+var RENDER_POSTS = function RENDER_POSTS(JSONstr, template, createElement) {
   // console.log('[RENDER_POSTS] Rendering posts elements');
   var selectedPostsElements = [];
 
@@ -488,8 +519,12 @@ __webpack_require__.r(__webpack_exports__);
         default: true
       },
       posts: {
-        type: 'String',
+        type: 'string',
         default: ''
+      },
+      template: {
+        type: 'string',
+        default: 'default'
       }
     },
     edit: function edit(props) {
@@ -526,7 +561,7 @@ function saveBlock(props, wp) {
     className: 'get-posts-block-wrapper'
   }, createElement('div', {
     className: 'get-posts-block-filter'
-  }, attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no'), Object(_functions__WEBPACK_IMPORTED_MODULE_0__["RENDER_POSTS"])(Object(_functions__WEBPACK_IMPORTED_MODULE_0__["SELECTED_POSTS"])(attributes.posts), createElement));
+  }, attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no'), Object(_functions__WEBPACK_IMPORTED_MODULE_0__["RENDER_POSTS"])(Object(_functions__WEBPACK_IMPORTED_MODULE_0__["SELECTED_POSTS"])(attributes.posts), attributes.template, createElement));
 }
 
 /***/ })

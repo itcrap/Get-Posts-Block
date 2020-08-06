@@ -24,8 +24,12 @@ import editBlock from './edit';
           default: true,
         },
         posts: {
-          type: 'String',
+          type: 'string',
           default: '',
+        },
+        template: {
+          type: 'string',
+          default: 'default',
         },
       },
       edit: (props) => {

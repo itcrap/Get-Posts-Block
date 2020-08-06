@@ -7,6 +7,7 @@ import {
 } from './functions';
 
 export default function editBlock(props, wp) {
+  const { __ } = wp.i18n;
   const { attributes, setAttributes } = props;
   const { useState, createElement, Fragment } = wp.element;
   const { InspectorControls } = wp.editor;
@@ -17,6 +18,7 @@ export default function editBlock(props, wp) {
     ToggleControl,
     PanelBody,
     PanelRow,
+    SelectControl,
   } = wp.components;
   const [isOpen, setOpen] = useState(false);
   const openModal = () => setOpen(true);
@@ -143,6 +145,46 @@ export default function editBlock(props, wp) {
         ),
       ),
     ),
+    createElement(
+      Fragment,
+      {},
+      createElement(
+        InspectorControls,
+        {},
+        createElement(
+          PanelBody,
+          { title: 'Template', initialOpen: true },
+          createElement(
+            PanelRow,
+            {},
+            createElement('div', {
+              className: 'get-posts-block-preview-template',
+              style: {
+                backgroundImage: `url("/wp-content/plugins/get-posts-block/${attributes.template}.png")`,
+              },
+            }),
+          ),
+          createElement(
+            PanelRow,
+            {},
+            createElement(SelectControl, {
+              // multiple: true,
+              label: __('Select post template'),
+              value: attributes.template, // e.g: value = [ 'a', 'c' ]
+              onChange: (tpl) => {
+                console.log(`Selected: ${tpl}`);
+                setAttributes({ template: tpl });
+              },
+              options: [
+                { value: 'default', label: 'Template 1' },
+                { value: 'theme2', label: 'Template 2' },
+                { value: 'theme3', label: 'Template 3' },
+              ],
+            }),
+          ),
+        ),
+      ),
+    ),
   ];
 
   /* Editor block */
@@ -158,7 +200,11 @@ export default function editBlock(props, wp) {
     createElement(
       'div',
       {},
-      RENDER_POSTS(SELECTED_POSTS(attributes.posts), createElement),
+      RENDER_POSTS(
+        SELECTED_POSTS(attributes.posts),
+        attributes.template,
+        createElement,
+      ),
     ),
   );
 

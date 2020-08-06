@@ -28,7 +28,7 @@ export const QUERY_POST = (postsArray) => {
 };
 
 /* Render post elements inside block in editor */
-export const RENDER_POSTS = (JSONstr, createElement) => {
+export const RENDER_POSTS = (JSONstr, template, createElement) => {
   // console.log('[RENDER_POSTS] Rendering posts elements');
   const selectedPostsElements = [];
   if (GET_POSTS(JSONstr).length > 0) {

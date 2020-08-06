@@ -37,6 +37,10 @@ module.exports = {
           context: '.',
           from: '*.php'
         },
+        { 
+          context: 'images',
+          from: '*.png'
+        },
       ],
     })
   ]

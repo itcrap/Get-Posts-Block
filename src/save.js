@@ -12,6 +12,10 @@ export default function saveBlock(props, wp) {
       { className: 'get-posts-block-filter' },
       attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no',
     ),
-    RENDER_POSTS(SELECTED_POSTS(attributes.posts), createElement),
+    RENDER_POSTS(
+      SELECTED_POSTS(attributes.posts),
+      attributes.template,
+      createElement,
+    ),
   );
 }
