@@ -429,11 +429,12 @@ var RENDER_POSTS = function RENDER_POSTS(JSONstr, createElement) {
 
   if (GET_POSTS(JSONstr).length > 0) {
     QUERY_POST(GET_POSTS(JSONstr)).forEach(function (post) {
-      selectedPostsElements.push(createElement('a', {
+      selectedPostsElements.push(createElement('li', {}, createElement('a', {
         href: post.link
-      }, createElement('div', {}, post.title.rendered)));
+      }, // createElement('div', {}, post.title.rendered),
+      post.title.rendered)));
     });
-    return selectedPostsElements;
+    return createElement('ul', {}, selectedPostsElements);
   }
 
   return false;
@@ -522,10 +523,10 @@ function saveBlock(props, wp) {
   var attributes = props.attributes;
   var createElement = wp.element.createElement;
   return createElement('div', {
-    className: 'postListWrapper'
+    className: 'get-posts-block-wrapper'
   }, createElement('div', {
-    className: 'testClass'
-  }, attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no'), createElement('div', {}, Object(_functions__WEBPACK_IMPORTED_MODULE_0__["RENDER_POSTS"])(Object(_functions__WEBPACK_IMPORTED_MODULE_0__["SELECTED_POSTS"])(attributes.posts), createElement)));
+    className: 'get-posts-block-filter'
+  }, attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no'), Object(_functions__WEBPACK_IMPORTED_MODULE_0__["RENDER_POSTS"])(Object(_functions__WEBPACK_IMPORTED_MODULE_0__["SELECTED_POSTS"])(attributes.posts), createElement));
 }
 
 /***/ })

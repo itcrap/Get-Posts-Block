@@ -6,16 +6,12 @@ export default function saveBlock(props, wp) {
 
   return createElement(
     'div',
-    { className: 'postListWrapper' },
+    { className: 'get-posts-block-wrapper' },
     createElement(
       'div',
-      { className: 'testClass' },
+      { className: 'get-posts-block-filter' },
       attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no',
     ),
-    createElement(
-      'div',
-      {},
-      RENDER_POSTS(SELECTED_POSTS(attributes.posts), createElement),
-    ),
+    RENDER_POSTS(SELECTED_POSTS(attributes.posts), createElement),
   );
 }

@@ -35,13 +35,18 @@ export const RENDER_POSTS = (JSONstr, createElement) => {
     QUERY_POST(GET_POSTS(JSONstr)).forEach((post) => {
       selectedPostsElements.push(
         createElement(
-          'a',
-          { href: post.link },
-          createElement('div', {}, post.title.rendered),
+          'li',
+          {},
+          createElement(
+            'a',
+            { href: post.link },
+            // createElement('div', {}, post.title.rendered),
+            post.title.rendered,
+          ),
         ),
       );
     });
-    return selectedPostsElements;
+    return createElement('ul', {}, selectedPostsElements);
   }
   return false;
 };
