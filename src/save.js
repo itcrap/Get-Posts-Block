@@ -1,5 +1,5 @@
 import { createElement } from '@wordpress/element';
-import { RENDER_POSTS, SELECTED_POSTS } from './services';
+import { RENDER_POSTS } from './services';
 
 export default function saveBlock(props) {
   const { attributes } = props;
@@ -13,7 +13,7 @@ export default function saveBlock(props) {
       attributes.filter === true ? 'Filter panel: yes' : 'Filter panel: no',
     ),
     RENDER_POSTS(
-      SELECTED_POSTS(attributes.posts),
+      attributes.posts,
       attributes.template,
       {
         title: true,

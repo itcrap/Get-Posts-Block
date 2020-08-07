@@ -7,7 +7,7 @@ import {
   PanelBody,
   PanelRow,
 } from '@wordpress/components';
-import { GET_POSTS, SET_POSTS, SELECTED_POSTS } from '../services';
+import { COUNT_POSTS_SELECTED, GET_POSTS, SET_POSTS } from '../services';
 
 const checkboxControlElement = (props, post, index) => {
   const getStateChecked = (idx) =>
@@ -62,9 +62,7 @@ const render = (props) => {
               isPrimary: true,
               onClick: () => openModal(),
             },
-            `Selected posts (${
-              GET_POSTS(SELECTED_POSTS(props.attributes.posts)).length
-            })`,
+            `Selected posts (${COUNT_POSTS_SELECTED(props.attributes.posts)})`,
           ),
           isOpen &&
             createElement(

@@ -17,6 +17,7 @@ module.exports = {
     ],
     "max-len": [2, {"code": 140, "tabWidth": 4, "ignoreUrls": true}],
     "no-console": "off",
+    "no-underscore-dangle": "off",
     "prettier/prettier": "error"
   },
   "settings": {

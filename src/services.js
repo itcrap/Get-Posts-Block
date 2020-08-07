@@ -16,26 +16,13 @@ export const HTTP_CLIENT = (url) => {
   return false;
 };
 
-/* Performing API query */
-export const QUERY_POST = (postsArray) => {
-  if (postsArray.length > 0) {
-    const postfix = '&include[]=';
-    let fullpostfix = '';
-    postsArray.forEach((post) => {
-      fullpostfix += postfix + post.id;
-    });
-    return HTTP_CLIENT(`/wp-json/wp/v2/posts/?${fullpostfix}`);
-  }
-  return false;
-};
-
 /* Render post template */
 export const RENDER_TEMPLATE = (post, template, fields) => {
   // console.log(post);
 
   const postImageStyle = () => {
-    return post.jetpack_featured_media_url.length > 0
-      ? { backgroundImage: `url("${post.jetpack_featured_media_url}")` }
+    return post.mediaUrl.length > 0
+      ? { backgroundImage: `url("${post.mediaUrl}")` }
       : {
           backgroundImage: `url("/wp-content/plugins/get-posts-block/images/no-article-logo.png")`,
         };
@@ -77,14 +64,14 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
             {
               className: 'get-posts-block-content-title',
             },
-            post.title.rendered,
+            post.title,
           ),
           createElement(
             'small',
             {
               className: 'get-posts-block-content-excerpt',
             },
-            post.excerpt.rendered.replace(/<[^>]*>?/gm, ''),
+            post.excerpt.replace(/<[^>]*>?/gm, ''),
           ),
         ),
       ),
@@ -92,22 +79,24 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
   );
 };
 
+const SELECTED_POSTS = (attributePosts) => {
+  return GET_POSTS(attributePosts).filter((post) => post.selected === true);
+};
+
+export const COUNT_POSTS_SELECTED = (attributePosts) => {
+  return SELECTED_POSTS(attributePosts).length;
+};
+
 /* Render post elements inside block in editor */
-export const RENDER_POSTS = (JSONstr, template, fields) => {
+export const RENDER_POSTS = (attributePosts, template, fields) => {
   // console.log('[RENDER_POSTS] Rendering posts elements');
   const selectedPostsElements = [];
-  if (GET_POSTS(JSONstr).length > 0) {
-    QUERY_POST(GET_POSTS(JSONstr)).forEach((post) => {
+
+  if (COUNT_POSTS_SELECTED(attributePosts)) {
+    SELECTED_POSTS(attributePosts).forEach((post) => {
       selectedPostsElements.push(RENDER_TEMPLATE(post, template, fields));
     });
     return selectedPostsElements;
   }
   return false;
-};
-
-export const SELECTED_POSTS = (JSONstr) => {
-  const selectedPosts = GET_POSTS(JSONstr).filter(
-    (post) => post.selected === true,
-  );
-  return SET_POSTS(selectedPosts);
 };

@@ -1,5 +1,5 @@
 import { createElement } from '@wordpress/element';
-import { RENDER_POSTS, SELECTED_POSTS } from '../services';
+import { RENDER_POSTS } from '../services';
 
 const render = (props) => {
   return createElement(
@@ -16,7 +16,7 @@ const render = (props) => {
       'div',
       {},
       RENDER_POSTS(
-        SELECTED_POSTS(props.attributes.posts),
+        props.attributes.posts,
         props.attributes.template,
         {
           title: true,
