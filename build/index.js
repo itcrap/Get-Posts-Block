@@ -467,20 +467,24 @@ var RENDER_TEMPLATE = function RENDER_TEMPLATE(post, template, fields) {
   console.log(post);
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('div', {
     className: 'get-posts-block-card-body'
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('a', {
+    href: post.link
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('div', {
     className: 'get-posts-block-post-image',
     style: {
       backgroundImage: "url(\"".concat(post.jetpack_featured_media_url, "\")")
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('div', {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('div', {
     className: 'get-posts-block-content-body'
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('a', {
+    href: post.link
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('div', {
     className: 'get-posts-block-content-container'
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('h6', {
     className: 'get-posts-block-content-title'
   }, post.title.rendered), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('small', {
     className: 'get-posts-block-content-excerpt'
-  }, post.excerpt.rendered.replace(/<[^>]*>?/gm, '')))));
+  }, post.excerpt.rendered.replace(/<[^>]*>?/gm, ''))))));
 };
 /* Render post elements inside block in editor */
 

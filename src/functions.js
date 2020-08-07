@@ -37,35 +37,48 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
     {
       className: 'get-posts-block-card-body',
     },
-    createElement('div', {
-      className: 'get-posts-block-post-image',
-      style: {
-        backgroundImage: `url("${post.jetpack_featured_media_url}")`,
+    createElement(
+      'a',
+      {
+        href: post.link,
       },
-    }),
+      createElement('div', {
+        className: 'get-posts-block-post-image',
+        style: {
+          backgroundImage: `url("${post.jetpack_featured_media_url}")`,
+        },
+      }),
+    ),
     createElement(
       'div',
       {
         className: 'get-posts-block-content-body',
       },
+
       createElement(
-        'div',
+        'a',
         {
-          className: 'get-posts-block-content-container',
+          href: post.link,
         },
         createElement(
-          'h6',
+          'div',
           {
-            className: 'get-posts-block-content-title',
+            className: 'get-posts-block-content-container',
           },
-          post.title.rendered,
-        ),
-        createElement(
-          'small',
-          {
-            className: 'get-posts-block-content-excerpt',
-          },
-          post.excerpt.rendered.replace(/<[^>]*>?/gm, ''),
+          createElement(
+            'h6',
+            {
+              className: 'get-posts-block-content-title',
+            },
+            post.title.rendered,
+          ),
+          createElement(
+            'small',
+            {
+              className: 'get-posts-block-content-excerpt',
+            },
+            post.excerpt.rendered.replace(/<[^>]*>?/gm, ''),
+          ),
         ),
       ),
     ),
