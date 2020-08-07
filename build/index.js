@@ -486,7 +486,7 @@ function editBlock(props) {
         path: '/wp/v2/posts/?_embed&'
       }).then(function (posts) {
         apiPostsArray = posts.map(function (post) {
-          console.log(post);
+          // console.log(post);
           var mediaUrl = post.featured_media ? post._embedded['wp:featuredmedia'].filter(function (feauteredImage) {
             return post.featured_media === feauteredImage.id;
           }).map(function (media) {
@@ -501,9 +501,8 @@ function editBlock(props) {
             categories: post.categories,
             mediaUrl: mediaUrl
           };
-        });
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-        console.log(apiPostsArray);
+        }); // console.log(apiPostsArray);
+
         props.setAttributes({
           posts: Object(_services__WEBPACK_IMPORTED_MODULE_1__["SET_POSTS"])(apiPostsArray)
         });

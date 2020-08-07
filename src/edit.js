@@ -14,7 +14,7 @@ export default function editBlock(props) {
       let apiPostsArray = [];
       apiFetch({ path: '/wp/v2/posts/?_embed&' }).then((posts) => {
         apiPostsArray = posts.map((post) => {
-          console.log(post);
+          // console.log(post);
 
           const mediaUrl = post.featured_media
             ? post._embedded['wp:featuredmedia']
@@ -34,8 +34,7 @@ export default function editBlock(props) {
             mediaUrl,
           };
         });
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-        console.log(apiPostsArray);
+        // console.log(apiPostsArray);
         props.setAttributes({ posts: SET_POSTS(apiPostsArray) });
       });
     }
