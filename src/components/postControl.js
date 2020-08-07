@@ -1,3 +1,4 @@
+import apiFetch from '@wordpress/api-fetch';
 import { useState, createElement, Fragment } from '@wordpress/element';
 import { InspectorControls } from '@wordpress/editor';
 import {
@@ -8,6 +9,41 @@ import {
   PanelRow,
 } from '@wordpress/components';
 import { COUNT_POSTS_SELECTED, GET_POSTS, SET_POSTS } from '../services';
+
+const renewPosts = (props) => {
+  console.log('[renewPosts] initiated');
+  if (!props.attributes.posts.length) {
+    console.log('[renewPosts] posts in props not found');
+    let apiPostsArray = [];
+    apiFetch({ path: '/wp/v2/posts/?_embed&' }).then((posts) => {
+      apiPostsArray = posts.map((post) => {
+        // console.log(post);
+
+        const mediaUrl = post.featured_media
+          ? post._embedded['wp:featuredmedia']
+              .filter(
+                (feauteredImage) => post.featured_media === feauteredImage.id,
+              )
+              .map((media) => media.media_details.sizes.thumbnail.source_url)
+          : '';
+
+        return {
+          id: post.id,
+          title: post.title.rendered,
+          link: post.link,
+          selected: false,
+          excerpt: post.excerpt.rendered,
+          categories: post.categories,
+          mediaUrl,
+        };
+      });
+      console.log('[renewPosts] Set full list of posts to property posts:');
+      console.log(apiPostsArray);
+      props.setAttributes({ posts: SET_POSTS(apiPostsArray) });
+    });
+  }
+  return true;
+};
 
 const checkboxControlElement = (props, post, index) => {
   const getStateChecked = (idx) =>
@@ -31,6 +67,7 @@ const checkboxControlElement = (props, post, index) => {
 
 const modalBody = (props) => {
   // console.log('[modalContents] Render modal contents');
+  renewPosts(props);
   const postList = [];
   GET_POSTS(props.attributes.posts).forEach((post, index) => {
     postList.push(checkboxControlElement(props, post, index));
