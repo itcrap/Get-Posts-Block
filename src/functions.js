@@ -31,7 +31,7 @@ export const QUERY_POST = (postsArray) => {
 
 /* Render post template */
 export const RENDER_TEMPLATE = (post, template, fields) => {
-  console.log(post);
+  // console.log(post);
   return createElement(
     'div',
     {

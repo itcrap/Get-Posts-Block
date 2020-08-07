@@ -464,7 +464,7 @@ var QUERY_POST = function QUERY_POST(postsArray) {
 /* Render post template */
 
 var RENDER_TEMPLATE = function RENDER_TEMPLATE(post, template, fields) {
-  console.log(post);
+  // console.log(post);
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('div', {
     className: 'get-posts-block-card-body'
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('a', {
