@@ -1,3 +1,15 @@
+import { __ } from '@wordpress/i18n';
+import { useState, createElement, Fragment } from '@wordpress/element';
+import { InspectorControls } from '@wordpress/editor';
+import {
+  Button,
+  CheckboxControl,
+  Modal,
+  ToggleControl,
+  PanelBody,
+  PanelRow,
+  SelectControl,
+} from '@wordpress/components';
 import {
   HTTP_CLIENT,
   GET_POSTS,
@@ -6,20 +18,8 @@ import {
   SELECTED_POSTS,
 } from './functions';
 
-export default function editBlock(props, wp) {
-  const { __ } = wp.i18n;
+export default function editBlock(props) {
   const { attributes, setAttributes } = props;
-  const { useState, createElement, Fragment } = wp.element;
-  const { InspectorControls } = wp.editor;
-  const {
-    Button,
-    CheckboxControl,
-    Modal,
-    ToggleControl,
-    PanelBody,
-    PanelRow,
-    SelectControl,
-  } = wp.components;
   const [isOpen, setOpen] = useState(false);
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
@@ -30,6 +30,7 @@ export default function editBlock(props, wp) {
   const onStart = () => {
     if (!attributes.posts.length) {
       const apiPostsArray = HTTP_CLIENT('/wp-json/wp/v2/posts').map((post) => {
+        // console.log(post);
         return {
           id: post.id,
           title: post.title.rendered,
@@ -38,6 +39,7 @@ export default function editBlock(props, wp) {
           categories: post.categories,
         };
       });
+      // console.log(apiPostsArray);
       setAttributes({ posts: SET_POSTS(apiPostsArray) });
     }
   };
@@ -203,6 +205,11 @@ export default function editBlock(props, wp) {
       RENDER_POSTS(
         SELECTED_POSTS(attributes.posts),
         attributes.template,
+        {
+          title: true,
+          excerpt: true,
+          image: true,
+        },
         createElement,
       ),
     ),

@@ -1,4 +1,4 @@
-{
+module.exports = {
   "env": {
   	"browser": true,
     "commonjs": true,
@@ -18,5 +18,13 @@
     "max-len": [2, {"code": 140, "tabWidth": 4, "ignoreUrls": true}],
     "no-console": "off",
     "prettier/prettier": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

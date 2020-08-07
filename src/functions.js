@@ -1,4 +1,6 @@
-/* Array to JSON transformations */
+import { createElement } from '@wordpress/element';
+
+/* JSON and Array transformations */
 export const SET_POSTS = (JSONstr) => JSON.stringify(JSONstr);
 export const GET_POSTS = (JSONstr) =>
   JSONstr === '' ? [] : JSON.parse(JSONstr);
@@ -27,26 +29,58 @@ export const QUERY_POST = (postsArray) => {
   return false;
 };
 
+/* Render post template */
+export const RENDER_TEMPLATE = (post, template, fields) => {
+  console.log(post);
+  return createElement(
+    'div',
+    {
+      className: 'get-posts-block-card-body',
+    },
+    createElement('div', {
+      className: 'get-posts-block-post-image',
+      style: {
+        backgroundImage: `url("${post.jetpack_featured_media_url}")`,
+      },
+    }),
+    createElement(
+      'div',
+      {
+        className: 'get-posts-block-content-body',
+      },
+      createElement(
+        'div',
+        {
+          className: 'get-posts-block-content-container',
+        },
+        createElement(
+          'h6',
+          {
+            className: 'get-posts-block-content-title',
+          },
+          post.title.rendered,
+        ),
+        createElement(
+          'small',
+          {
+            className: 'get-posts-block-content-excerpt',
+          },
+          post.excerpt.rendered.replace(/<[^>]*>?/gm, ''),
+        ),
+      ),
+    ),
+  );
+};
+
 /* Render post elements inside block in editor */
-export const RENDER_POSTS = (JSONstr, template, createElement) => {
+export const RENDER_POSTS = (JSONstr, template, fields) => {
   // console.log('[RENDER_POSTS] Rendering posts elements');
   const selectedPostsElements = [];
   if (GET_POSTS(JSONstr).length > 0) {
     QUERY_POST(GET_POSTS(JSONstr)).forEach((post) => {
-      selectedPostsElements.push(
-        createElement(
-          'li',
-          {},
-          createElement(
-            'a',
-            { href: post.link },
-            // createElement('div', {}, post.title.rendered),
-            post.title.rendered,
-          ),
-        ),
-      );
+      selectedPostsElements.push(RENDER_TEMPLATE(post, template, fields));
     });
-    return createElement('ul', {}, selectedPostsElements);
+    return selectedPostsElements;
   }
   return false;
 };

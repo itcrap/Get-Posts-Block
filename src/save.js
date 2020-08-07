@@ -1,8 +1,8 @@
+import { createElement } from '@wordpress/element';
 import { RENDER_POSTS, SELECTED_POSTS } from './functions';
 
-export default function saveBlock(props, wp) {
+export default function saveBlock(props) {
   const { attributes } = props;
-  const { createElement } = wp.element;
 
   return createElement(
     'div',
@@ -15,6 +15,11 @@ export default function saveBlock(props, wp) {
     RENDER_POSTS(
       SELECTED_POSTS(attributes.posts),
       attributes.template,
+      {
+        title: true,
+        excerpt: true,
+        image: true,
+      },
       createElement,
     ),
   );
