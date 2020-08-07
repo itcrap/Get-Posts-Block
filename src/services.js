@@ -32,6 +32,15 @@ export const QUERY_POST = (postsArray) => {
 /* Render post template */
 export const RENDER_TEMPLATE = (post, template, fields) => {
   // console.log(post);
+
+  const postImageStyle = () => {
+    return post.jetpack_featured_media_url.length > 0
+      ? { backgroundImage: `url("${post.jetpack_featured_media_url}")` }
+      : {
+          backgroundImage: `url("/wp-content/plugins/get-posts-block/images/no-article-logo.png")`,
+        };
+  };
+
   return createElement(
     'div',
     {
@@ -44,9 +53,7 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
       },
       createElement('div', {
         className: 'get-posts-block-post-image',
-        style: {
-          backgroundImage: `url("${post.jetpack_featured_media_url}")`,
-        },
+        style: postImageStyle(),
       }),
     ),
     createElement(
@@ -57,6 +64,7 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
       createElement(
         'a',
         {
+          className: 'get-posts-block-a-container',
           href: post.link,
         },
         createElement(
@@ -65,7 +73,7 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
             className: 'get-posts-block-content-container',
           },
           createElement(
-            'h6',
+            'div',
             {
               className: 'get-posts-block-content-title',
             },

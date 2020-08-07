@@ -1,10 +1,13 @@
 .get-posts-block-card-body {
 	height: 100px;
 	margin-bottom: 7px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
 	/* background-color: #eaecee; */
 	background: rgba(0, 0, 0, 0.15);
 	border-top-left-radius: 50px;
 	border-bottom-left-radius: 50px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
 	display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -46,8 +49,8 @@
 }
 
 .get-posts-block-content-body {
-	border: 1px solid #171717;
-	margin: 10px 15px;
+
+	margin: 7px 15px;
 	-webkit-order: 0;
     -ms-flex-order: 0;
     order: 0;
@@ -78,6 +81,8 @@
 }
 
 .get-posts-block-content-title {
+    font-size: 18px;
+    font-weight: 400;
 	opacity: .75;
 	padding-bottom: 5px !important;
 	-webkit-order: 0;
@@ -92,6 +97,8 @@
 }
 
 .get-posts-block-content-excerpt {
+    font-size: 14px;
+    font-weight: 300;
 	opacity: .75;
 	-webkit-order: 0;
     -ms-flex-order: 0;
@@ -104,6 +111,39 @@
     align-self: auto;
 }
 
+.get-posts-block-a-container, 
+.get-posts-block-a-container:hover {
+    text-decoration: none !important;
+}
+
 .get-posts-block-content-body a {
 	color:unset;
+}
+
+/* For all mobiles */
+@media only screen and (max-width: 768px) {
+    .get-posts-block-content-title {
+        font-size: 18px;
+        font-weight: 400;
+    }
+    .get-posts-block-content-excerpt{
+        font-size: 12px;
+        font-weight: 300;
+    }
+
+}
+
+/* Fix to set first post image size */
+@media only screen and (max-width: 600px) {
+    .get-posts-block-content-title {
+        font-size: 15px;
+        font-weight: 400;
+    }
+    .get-posts-block-content-excerpt {
+        font-size: 11px;
+        font-weight: 300;
+    }
+    .get-posts-block-content-body {
+        margin: 5px 10px;
+    }
 }
