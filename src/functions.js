@@ -54,7 +54,6 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
       {
         className: 'get-posts-block-content-body',
       },
-
       createElement(
         'a',
         {
