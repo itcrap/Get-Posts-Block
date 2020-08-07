@@ -42,17 +42,17 @@ function get_posts_block_register_block() {
 	// Register editor style build/editor.css
 	wp_register_style(
 		'get-posts-block-editor-style',
-		plugins_url( 'editor.css', __FILE__ ),
+		plugins_url( 'css/editor.css', __FILE__ ),
 		array( 'wp-edit-blocks' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'editor.css' )
+		filemtime( plugin_dir_path( __FILE__ ) . 'css/editor.css' )
 	);
 
 	// Register front end block style build/style.css
 	wp_register_style(
 		'get-posts-block-frontend-style',
-		plugins_url( 'style.css', __FILE__ ),
+		plugins_url( 'css/style.css', __FILE__ ),
 		array( ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
+		filemtime( plugin_dir_path( __FILE__ ) . 'css/style.css' )
 	);
 
 	// Register your block

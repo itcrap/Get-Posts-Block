@@ -17,7 +17,8 @@ module.exports = {
         test: /\.(js)$/,
         loader: "eslint-loader",
         include: [
-          path.resolve(__dirname, CONFIG.BUILD_DIR),
+          //path.resolve(__dirname, ),
+          path.join(__dirname, CONFIG.BUILD_DIR),
         ],
         options: {
           fix: CONFIG.CODE_AUTOFIX,
@@ -31,15 +32,17 @@ module.exports = {
       patterns: [
         { 
           context: 'src',
-          from: '*.css'
+          from: 'css/*.css',
+          //to: CONFIG.BUILD_DIR
         },
         { 
           context: '.',
           from: '*.php'
         },
         { 
-          context: 'images',
-          from: '*.png'
+          context: 'src',
+          from: 'images/*.png',
+          //to: CONFIG.BUILD_DIR
         },
       ],
     })

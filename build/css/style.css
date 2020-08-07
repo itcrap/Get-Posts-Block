@@ -3,6 +3,8 @@
 	margin-bottom: 7px;
 	/* background-color: #eaecee; */
 	background: rgba(0, 0, 0, 0.15);
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
 	display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
@@ -29,6 +31,7 @@
 	height: 70px;
 	min-height: 100px;
 	min-width: 100px;
+	border-radius: 50%;
 	background-size: contain;
 	background-position: center;
 	-webkit-order: 0;

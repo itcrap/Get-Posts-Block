@@ -1,5 +1,5 @@
 import { createElement } from '@wordpress/element';
-import { RENDER_POSTS, SELECTED_POSTS } from './functions';
+import { RENDER_POSTS, SELECTED_POSTS } from './services';
 
 export default function saveBlock(props) {
   const { attributes } = props;
