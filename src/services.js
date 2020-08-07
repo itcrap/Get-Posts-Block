@@ -71,7 +71,7 @@ export const RENDER_TEMPLATE = (post, template, fields) => {
             {
               className: 'get-posts-block-content-excerpt',
             },
-            post.excerpt.replace(/<[^>]*>?/gm, ''),
+            `${post.excerpt.replace(/<[^>]*>?/gm, '')}...`,
           ),
         ),
       ),

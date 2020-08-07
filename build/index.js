@@ -698,7 +698,7 @@ var RENDER_TEMPLATE = function RENDER_TEMPLATE(post, template, fields) {
     className: 'get-posts-block-content-title'
   }, post.title), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])('small', {
     className: 'get-posts-block-content-excerpt'
-  }, post.excerpt.replace(/<[^>]*>?/gm, ''))))));
+  }, "".concat(post.excerpt.replace(/<[^>]*>?/gm, ''), "..."))))));
 };
 
 var SELECTED_POSTS = function SELECTED_POSTS(attributePosts) {
